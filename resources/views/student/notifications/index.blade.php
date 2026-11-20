@@ -2,7 +2,7 @@
     <div class="max-w-4xl mx-auto space-y-6">
         <div class="flex items-center justify-between">
             <div>
-                <h1 class="text-xl font-bold tracking-tight text-[#172B4D]">Notifications</h1>
+                <h1 class="text-xl font-bold tracking-tight text-slate-900">Notifications</h1>
                 <p class="text-xs text-slate-500">In-app notifications on complaint milestones and updates</p>
             </div>
             @if($notifications->where('is_read', false)->count() > 0)
@@ -19,11 +19,11 @@
             @forelse($notifications as $notif)
                 <div class="p-4 sm:p-5 flex items-start justify-between gap-4 {{ $notif->is_read ? 'bg-white' : 'bg-blue-50/40' }} transition">
                     <div class="flex items-start gap-3 min-w-0">
-                        <div class="w-8 h-8 rounded-full {{ $notif->is_read ? 'bg-slate-100 text-slate-500' : 'bg-blue-100 text-[#2563EB]' }} flex items-center justify-center shrink-0 mt-0.5">
+                        <div class="w-8 h-8 rounded-full {{ $notif->is_read ? 'bg-slate-100 text-slate-500' : 'bg-blue-100 text-blue-600' }} flex items-center justify-center shrink-0 mt-0.5">
                             <i data-lucide="bell" class="w-4 h-4"></i>
                         </div>
                         <div class="min-w-0 flex-1">
-                            <h3 class="text-xs font-semibold {{ $notif->is_read ? 'text-slate-800' : 'text-[#172B4D]' }}">
+                            <h3 class="text-xs font-semibold {{ $notif->is_read ? 'text-slate-800' : 'text-slate-900' }}">
                                 {{ $notif->title }}
                             </h3>
                             <p class="text-xs text-slate-600 mt-1 leading-relaxed">
@@ -32,7 +32,7 @@
                             <div class="flex items-center gap-4 mt-2 text-[11px] text-slate-400">
                                 <span>{{ $notif->created_at->diffForHumans() }} ({{ $notif->created_at->format('d M, H:i') }})</span>
                                 @if($notif->complaint_id)
-                                    <a href="{{ route('student.complaints.show', $notif->complaint_id) }}" class="text-[#2563EB] hover:underline font-medium">
+                                    <a href="{{ route('student.complaints.show', $notif->complaint_id) }}" class="text-blue-600 hover:underline font-medium">
                                         View Complaint &rarr;
                                     </a>
                                 @endif

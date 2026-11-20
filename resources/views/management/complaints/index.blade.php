@@ -1,7 +1,7 @@
 <x-layouts.app :title="'Assigned Complaints'">
     <div class="space-y-6">
         <div>
-            <h1 class="text-xl font-bold tracking-tight text-[#172B4D]">Assigned Complaints</h1>
+            <h1 class="text-xl font-bold tracking-tight text-slate-900">Assigned Complaints</h1>
             <p class="text-xs text-slate-500">Manage and investigate grievances assigned to your portfolio</p>
         </div>
 
@@ -11,12 +11,12 @@
                 <div>
                     <label for="search" class="block text-[11px] font-semibold text-slate-600 mb-1">Search</label>
                     <input type="text" name="search" id="search" value="{{ request('search') }}" placeholder="Subject or Number..."
-                           class="w-full px-3 py-1.5 text-xs rounded border border-slate-300 focus:outline-none focus:border-[#2563EB]">
+                           class="w-full px-3 py-1.5 text-xs rounded border border-slate-300 focus:outline-none focus:border-blue-600">
                 </div>
 
                 <div>
                     <label for="status" class="block text-[11px] font-semibold text-slate-600 mb-1">Status</label>
-                    <select name="status" id="status" class="w-full px-3 py-1.5 text-xs rounded border border-slate-300 focus:outline-none focus:border-[#2563EB] bg-white">
+                    <select name="status" id="status" class="w-full px-3 py-1.5 text-xs rounded border border-slate-300 focus:outline-none focus:border-blue-600 bg-white">
                         <option value="">All Statuses</option>
                         <option value="ASSIGNED" {{ request('status') === 'ASSIGNED' ? 'selected' : '' }}>Assigned (New)</option>
                         <option value="IN_PROGRESS" {{ request('status') === 'IN_PROGRESS' ? 'selected' : '' }}>In Progress</option>
@@ -28,7 +28,7 @@
 
                 <div>
                     <label for="priority" class="block text-[11px] font-semibold text-slate-600 mb-1">Priority</label>
-                    <select name="priority" id="priority" class="w-full px-3 py-1.5 text-xs rounded border border-slate-300 focus:outline-none focus:border-[#2563EB] bg-white">
+                    <select name="priority" id="priority" class="w-full px-3 py-1.5 text-xs rounded border border-slate-300 focus:outline-none focus:border-blue-600 bg-white">
                         <option value="">All Priorities</option>
                         <option value="LOW" {{ request('priority') === 'LOW' ? 'selected' : '' }}>Low</option>
                         <option value="MEDIUM" {{ request('priority') === 'MEDIUM' ? 'selected' : '' }}>Medium</option>
@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="flex items-end gap-2">
-                    <button type="submit" class="px-4 py-1.5 rounded bg-[#172B4D] text-white text-xs font-semibold hover:bg-slate-900 transition">
+                    <button type="submit" class="px-4 py-1.5 rounded bg-slate-900 text-white text-xs font-semibold hover:bg-slate-900 transition">
                         Filter
                     </button>
                     @if(request()->hasAny(['search', 'status', 'priority']))
@@ -92,7 +92,7 @@
                                     {{ $c->created_at->format('d M Y') }}
                                 </td>
                                 <td class="px-6 py-3.5 text-right whitespace-nowrap">
-                                    <a href="{{ route('management.complaints.show', $c->id) }}" class="px-3 py-1 rounded bg-[#2563EB] text-white text-xs font-semibold hover:bg-blue-700 transition">
+                                    <a href="{{ route('management.complaints.show', $c->id) }}" class="px-3 py-1 rounded bg-blue-600 text-white text-xs font-semibold hover:bg-blue-700 transition">
                                         Investigate
                                     </a>
                                 </td>

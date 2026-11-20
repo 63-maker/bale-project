@@ -1,7 +1,7 @@
 <x-layouts.app :title="'Closed Complaints'">
     <div class="space-y-6">
         <div>
-            <h1 class="text-xl font-bold tracking-tight text-[#172B4D]">Closed Complaints Archive</h1>
+            <h1 class="text-xl font-bold tracking-tight text-slate-900">Closed Complaints Archive</h1>
             <p class="text-xs text-slate-500">Historical archive of resolved grievances officially closed by your office</p>
         </div>
 
@@ -41,7 +41,7 @@
                                     {{ $c->closed_at ? $c->closed_at->format('d M Y, H:i') : 'N/A' }}
                                 </td>
                                 <td class="px-6 py-3.5 text-right whitespace-nowrap">
-                                    <a href="{{ route('management.complaints.show', $c->id) }}" class="text-[#2563EB] hover:underline font-medium">
+                                    <a href="{{ route('management.complaints.show', $c->id) }}" class="text-blue-600 hover:underline font-medium">
                                         View Record &rarr;
                                     </a>
                                 </td>

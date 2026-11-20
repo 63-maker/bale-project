@@ -2,7 +2,7 @@
     <div class="max-w-3xl mx-auto">
         <div class="mb-6 flex items-center justify-between">
             <div>
-                <h1 class="text-xl font-bold tracking-tight text-[#172B4D]">Submit Complaint</h1>
+                <h1 class="text-xl font-bold tracking-tight text-slate-900">Submit Complaint</h1>
                 <p class="text-xs text-slate-500">File a formal institutional complaint with supporting documents</p>
             </div>
             <a href="{{ route('student.complaints.index') }}" class="text-xs font-medium text-slate-600 hover:text-slate-900">
@@ -26,7 +26,7 @@
                            minlength="5"
                            maxlength="255"
                            placeholder="Concise summary of the grievance (e.g. Non-functioning lab equipment in CS Lab 3)"
-                           class="w-full px-3 py-2 text-xs rounded border border-slate-300 focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]">
+                           class="w-full px-3 py-2 text-xs rounded border border-slate-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600">
                     <p class="text-[11px] text-slate-400 mt-1">Brief summary of the issue. Minimum 5 characters.</p>
                 </div>
 
@@ -38,7 +38,7 @@
                         <select name="department_id" 
                                 id="department_id" 
                                 required 
-                                class="w-full px-3 py-2 text-xs rounded border border-slate-300 focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] bg-white">
+                                class="w-full px-3 py-2 text-xs rounded border border-slate-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 bg-white">
                             <option value="">Select Department</option>
                             @foreach($departments as $dept)
                                 <option value="{{ $dept->id }}" {{ old('department_id') == $dept->id ? 'selected' : '' }}>
@@ -55,7 +55,7 @@
                         <select name="category_id" 
                                 id="category_id" 
                                 required 
-                                class="w-full px-3 py-2 text-xs rounded border border-slate-300 focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] bg-white">
+                                class="w-full px-3 py-2 text-xs rounded border border-slate-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 bg-white">
                             <option value="">Select Category</option>
                             @foreach($categories as $cat)
                                 <option value="{{ $cat->id }}" {{ old('category_id') == $cat->id ? 'selected' : '' }}>
@@ -72,7 +72,7 @@
                     </label>
                     <select name="priority" 
                             id="priority" 
-                            class="w-full px-3 py-2 text-xs rounded border border-slate-300 focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] bg-white">
+                            class="w-full px-3 py-2 text-xs rounded border border-slate-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 bg-white">
                         <option value="LOW" {{ old('priority') == 'LOW' ? 'selected' : '' }}>Low (Minor inconvenience / general query)</option>
                         <option value="MEDIUM" {{ old('priority', 'MEDIUM') == 'MEDIUM' ? 'selected' : '' }}>Medium (Standard operational issue)</option>
                         <option value="HIGH" {{ old('priority') == 'HIGH' ? 'selected' : '' }}>High (Impacting coursework or hostel living)</option>
@@ -91,7 +91,7 @@
                               minlength="10"
                               maxlength="5000"
                               placeholder="Please provide exact details, date/time observed, location/room number, and any previous communications..."
-                              class="w-full px-3 py-2 text-xs rounded border border-slate-300 focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] leading-relaxed">{{ old('description') }}</textarea>
+                              class="w-full px-3 py-2 text-xs rounded border border-slate-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 leading-relaxed">{{ old('description') }}</textarea>
                     <p class="text-[11px] text-slate-400 mt-1">Provide clear factual details to assist Management investigation.</p>
                 </div>
 
@@ -100,7 +100,7 @@
                     <label class="block text-xs font-semibold text-slate-700 mb-1">
                         Supporting Attachments (Optional)
                     </label>
-                    <div class="border-2 border-dashed border-slate-300 rounded p-6 text-center hover:border-[#2563EB] transition bg-slate-50/50 relative">
+                    <div class="border-2 border-dashed border-slate-300 rounded p-6 text-center hover:border-blue-600 transition bg-slate-50/50 relative">
                         <input type="file" 
                                name="attachments[]" 
                                id="attachments" 
@@ -133,7 +133,7 @@
                     <a href="{{ route('student.complaints.index') }}" class="px-4 py-2 rounded border border-slate-300 text-slate-600 text-xs font-semibold hover:bg-slate-50 transition">
                         Cancel
                     </a>
-                    <button type="submit" class="px-5 py-2 rounded bg-[#2563EB] text-white text-xs font-semibold hover:bg-blue-700 transition">
+                    <button type="submit" class="px-5 py-2 rounded bg-blue-600 text-white text-xs font-semibold hover:bg-blue-700 transition">
                         Submit Complaint
                     </button>
                 </div>

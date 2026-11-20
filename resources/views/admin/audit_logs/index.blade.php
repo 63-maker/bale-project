@@ -1,7 +1,7 @@
 <x-layouts.app :title="'Audit Logs'">
     <div class="space-y-6">
         <div>
-            <h1 class="text-xl font-bold tracking-tight text-[#172B4D]">Security & System Audit Logs</h1>
+            <h1 class="text-xl font-bold tracking-tight text-slate-900">Security & System Audit Logs</h1>
             <p class="text-xs text-slate-500">Immutable chronological record of administrative interventions, status shifts, and logins</p>
         </div>
 
@@ -11,23 +11,23 @@
                 <div>
                     <label for="action" class="block text-[11px] font-semibold text-slate-600 mb-1">Action Name</label>
                     <input type="text" name="action" id="action" value="{{ request('action') }}" placeholder="e.g. COMPLAINT_ASSIGNED..."
-                           class="w-full px-3 py-1.5 text-xs rounded border border-slate-300 focus:outline-none focus:border-[#2563EB]">
+                           class="w-full px-3 py-1.5 text-xs rounded border border-slate-300 focus:outline-none focus:border-blue-600">
                 </div>
 
                 <div>
                     <label for="start_date" class="block text-[11px] font-semibold text-slate-600 mb-1">From Date</label>
                     <input type="date" name="start_date" id="start_date" value="{{ request('start_date') }}"
-                           class="w-full px-3 py-1.5 text-xs rounded border border-slate-300 focus:outline-none focus:border-[#2563EB]">
+                           class="w-full px-3 py-1.5 text-xs rounded border border-slate-300 focus:outline-none focus:border-blue-600">
                 </div>
 
                 <div>
                     <label for="end_date" class="block text-[11px] font-semibold text-slate-600 mb-1">To Date</label>
                     <input type="date" name="end_date" id="end_date" value="{{ request('end_date') }}"
-                           class="w-full px-3 py-1.5 text-xs rounded border border-slate-300 focus:outline-none focus:border-[#2563EB]">
+                           class="w-full px-3 py-1.5 text-xs rounded border border-slate-300 focus:outline-none focus:border-blue-600">
                 </div>
 
                 <div class="flex items-end gap-2">
-                    <button type="submit" class="px-4 py-1.5 rounded bg-[#172B4D] text-white text-xs font-semibold hover:bg-slate-900 transition">
+                    <button type="submit" class="px-4 py-1.5 rounded bg-slate-900 text-white text-xs font-semibold hover:bg-slate-900 transition">
                         Filter Logs
                     </button>
                     @if(request()->hasAny(['action', 'start_date', 'end_date']))
@@ -65,7 +65,7 @@
                                     @endif
                                 </td>
                                 <td class="px-6 py-3.5 whitespace-nowrap">
-                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold font-mono bg-slate-100 text-[#172B4D] border border-slate-300">
+                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold font-mono bg-slate-100 text-slate-900 border border-slate-300">
                                         {{ $log->action }}
                                     </span>
                                 </td>

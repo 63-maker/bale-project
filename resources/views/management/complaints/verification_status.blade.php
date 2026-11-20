@@ -1,7 +1,7 @@
 <x-layouts.app :title="'Verification Status'">
     <div class="space-y-6">
         <div>
-            <h1 class="text-xl font-bold tracking-tight text-[#172B4D]">Verification Status</h1>
+            <h1 class="text-xl font-bold tracking-tight text-slate-900">Verification Status</h1>
             <p class="text-xs text-slate-500">Monitor resolutions awaiting Admin review, approved closures, or required revisions</p>
         </div>
 
@@ -41,7 +41,7 @@
                                     {{ $c->verification_remarks ?: 'Pending review' }}
                                 </td>
                                 <td class="px-6 py-3.5 text-right whitespace-nowrap">
-                                    <a href="{{ route('management.complaints.show', $c->id) }}" class="text-[#2563EB] hover:underline font-medium">
+                                    <a href="{{ route('management.complaints.show', $c->id) }}" class="text-blue-600 hover:underline font-medium">
                                         Open Case &rarr;
                                     </a>
                                 </td>

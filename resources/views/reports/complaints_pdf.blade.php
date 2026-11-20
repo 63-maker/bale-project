@@ -99,8 +99,8 @@
 </head>
 <body>
     <div class="header">
-        <div class="title">Apex Institute of Technology & Engineering</div>
-        <div class="subtitle">Central College Complaint Management System &mdash; Audit & Grievance Report</div>
+        <div class="title">College Complaint Portal</div>
+        <div class="subtitle">Official Grievance Redressal Audit Report</div>
         <div class="meta">Generated: {{ $generatedAt }} &bull; Total Filtered Records: {{ $complaints->count() }}</div>
     </div>
 
@@ -167,7 +167,7 @@
     </table>
 
     <div class="footer">
-        Confidential &bull; Apex College Grievance Redressal Committee &bull; Official System Generated Document
+        Confidential &bull; College Complaint Portal &bull; Official System Generated Audit Document
     </div>
 </body>
 </html>

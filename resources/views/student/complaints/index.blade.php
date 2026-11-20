@@ -3,10 +3,10 @@
         <!-- Header -->
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-                <h1 class="text-xl font-bold tracking-tight text-[#172B4D]">My Complaints</h1>
+                <h1 class="text-xl font-bold tracking-tight text-slate-900">My Complaints</h1>
                 <p class="text-xs text-slate-500">Track and manage all your submitted complaints</p>
             </div>
-            <a href="{{ route('student.complaints.create') }}" class="inline-flex items-center gap-2 px-4 py-2 rounded bg-[#2563EB] text-white text-xs font-semibold hover:bg-blue-700 transition">
+            <a href="{{ route('student.complaints.create') }}" class="inline-flex items-center gap-2 px-4 py-2 rounded bg-blue-600 text-white text-xs font-semibold hover:bg-blue-700 transition">
                 <i data-lucide="plus-circle" class="w-4 h-4"></i>
                 <span>Submit Complaint</span>
             </a>
@@ -18,12 +18,12 @@
                 <div>
                     <label for="search" class="block text-[11px] font-semibold text-slate-600 mb-1">Search Subject or Number</label>
                     <input type="text" name="search" id="search" value="{{ request('search') }}" placeholder="e.g. CCMS-2026 or Lab Wi-Fi"
-                           class="w-full px-3 py-1.5 text-xs rounded border border-slate-300 focus:outline-none focus:border-[#2563EB]">
+                           class="w-full px-3 py-1.5 text-xs rounded border border-slate-300 focus:outline-none focus:border-blue-600">
                 </div>
 
                 <div>
                     <label for="status" class="block text-[11px] font-semibold text-slate-600 mb-1">Status Filter</label>
-                    <select name="status" id="status" class="w-full px-3 py-1.5 text-xs rounded border border-slate-300 focus:outline-none focus:border-[#2563EB] bg-white">
+                    <select name="status" id="status" class="w-full px-3 py-1.5 text-xs rounded border border-slate-300 focus:outline-none focus:border-blue-600 bg-white">
                         <option value="">All Statuses</option>
                         <option value="SUBMITTED" {{ request('status') === 'SUBMITTED' ? 'selected' : '' }}>Submitted</option>
                         <option value="ASSIGNED" {{ request('status') === 'ASSIGNED' ? 'selected' : '' }}>Assigned</option>
@@ -37,7 +37,7 @@
                 </div>
 
                 <div class="flex items-end gap-2">
-                    <button type="submit" class="px-4 py-1.5 rounded bg-[#172B4D] text-white text-xs font-semibold hover:bg-slate-900 transition">
+                    <button type="submit" class="px-4 py-1.5 rounded bg-slate-900 text-white text-xs font-semibold hover:bg-slate-900 transition">
                         Filter
                     </button>
                     @if(request()->hasAny(['search', 'status']))
@@ -90,7 +90,7 @@
                                     {{ $c->created_at->format('d M Y, H:i') }}
                                 </td>
                                 <td class="px-6 py-3.5 text-right whitespace-nowrap">
-                                    <a href="{{ route('student.complaints.show', $c->id) }}" class="text-[#2563EB] hover:underline font-medium">
+                                    <a href="{{ route('student.complaints.show', $c->id) }}" class="text-blue-600 hover:underline font-medium">
                                         View &rarr;
                                     </a>
                                 </td>

@@ -2,10 +2,10 @@
     <div class="space-y-6" x-data="{ createModal: false }">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-                <h1 class="text-xl font-bold tracking-tight text-[#172B4D]">College Departments</h1>
+                <h1 class="text-xl font-bold tracking-tight text-slate-900">College Departments</h1>
                 <p class="text-xs text-slate-500">Configure academic and operational departments for complaint routing</p>
             </div>
-            <button type="button" @click="createModal = true" class="inline-flex items-center gap-2 px-4 py-2 rounded bg-[#172B4D] text-white text-xs font-semibold hover:bg-slate-900 transition">
+            <button type="button" @click="createModal = true" class="inline-flex items-center gap-2 px-4 py-2 rounded bg-slate-900 text-white text-xs font-semibold hover:bg-slate-900 transition">
                 <i data-lucide="plus" class="w-4 h-4"></i>
                 <span>Add Department</span>
             </button>
@@ -57,7 +57,7 @@
                                 <td class="px-6 py-3.5 text-right whitespace-nowrap space-x-2">
                                     <template x-if="!editMode">
                                         <div class="inline-flex items-center gap-2">
-                                            <button type="button" @click="editMode = true" class="text-xs text-[#2563EB] hover:underline font-medium">Edit</button>
+                                            <button type="button" @click="editMode = true" class="text-xs text-blue-600 hover:underline font-medium">Edit</button>
                                             <form method="POST" action="{{ route('admin.departments.status', $dept->id) }}" class="inline">
                                                 @csrf
                                                 @method('PATCH')
@@ -69,7 +69,7 @@
                                     </template>
                                     <template x-if="editMode">
                                         <div class="inline-flex items-center gap-2">
-                                            <button type="submit" form="edit-dept-{{ $dept->id }}" class="px-2 py-1 rounded bg-[#2563EB] text-white text-xs font-semibold">Save</button>
+                                            <button type="submit" form="edit-dept-{{ $dept->id }}" class="px-2 py-1 rounded bg-blue-600 text-white text-xs font-semibold">Save</button>
                                             <button type="button" @click="editMode = false" class="px-2 py-1 rounded border border-slate-300 text-xs text-slate-600">Cancel</button>
                                         </div>
                                     </template>
@@ -85,7 +85,7 @@
         <div x-show="createModal" class="fixed inset-0 z-50 overflow-y-auto bg-slate-900/50 flex items-center justify-center p-4" style="display: none;">
             <div class="bg-white rounded border border-slate-200 max-w-md w-full p-6" @click.outside="createModal = false">
                 <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-sm font-bold text-[#172B4D]">Add Department</h3>
+                    <h3 class="text-sm font-bold text-slate-900">Add Department</h3>
                     <button @click="createModal = false" class="text-slate-400 hover:text-slate-600">&times;</button>
                 </div>
                 <form method="POST" action="{{ route('admin.departments.store') }}" class="space-y-4">
@@ -93,16 +93,16 @@
                     <div>
                         <label for="dept_name" class="block text-xs font-semibold text-slate-700 mb-1">Department Name <span class="text-red-500">*</span></label>
                         <input type="text" name="name" id="dept_name" required placeholder="e.g. Electrical & Electronics Engineering"
-                               class="w-full px-3 py-2 text-xs rounded border border-slate-300 focus:outline-none focus:border-[#2563EB]">
+                               class="w-full px-3 py-2 text-xs rounded border border-slate-300 focus:outline-none focus:border-blue-600">
                     </div>
                     <div>
                         <label for="dept_code" class="block text-xs font-semibold text-slate-700 mb-1">Department Code <span class="text-red-500">*</span></label>
                         <input type="text" name="code" id="dept_code" required placeholder="e.g. EEE"
-                               class="w-full px-3 py-2 text-xs rounded border border-slate-300 focus:outline-none focus:border-[#2563EB]">
+                               class="w-full px-3 py-2 text-xs rounded border border-slate-300 focus:outline-none focus:border-blue-600">
                     </div>
                     <div class="flex items-center justify-end gap-2 pt-2 border-t border-slate-200">
                         <button type="button" @click="createModal = false" class="px-3 py-1.5 rounded border border-slate-300 text-xs text-slate-600 hover:bg-slate-50">Cancel</button>
-                        <button type="submit" class="px-4 py-1.5 rounded bg-[#172B4D] text-white text-xs font-semibold hover:bg-slate-900">Create Department</button>
+                        <button type="submit" class="px-4 py-1.5 rounded bg-slate-900 text-white text-xs font-semibold hover:bg-slate-900">Create Department</button>
                     </div>
                 </form>
             </div>

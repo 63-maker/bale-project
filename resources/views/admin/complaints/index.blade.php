@@ -1,7 +1,7 @@
 <x-layouts.app :title="'All Complaints'">
     <div class="space-y-6">
         <div>
-            <h1 class="text-xl font-bold tracking-tight text-[#172B4D]">All Complaints Registry</h1>
+            <h1 class="text-xl font-bold tracking-tight text-slate-900">All Complaints Registry</h1>
             <p class="text-xs text-slate-500">Comprehensive administrative control and oversight over all campus complaints</p>
         </div>
 
@@ -11,12 +11,12 @@
                 <div class="sm:col-span-2">
                     <label for="search" class="block text-[11px] font-semibold text-slate-600 mb-1">Search</label>
                     <input type="text" name="search" id="search" value="{{ request('search') }}" placeholder="Subject, Number, Student Name, Register No..."
-                           class="w-full px-3 py-1.5 text-xs rounded border border-slate-300 focus:outline-none focus:border-[#2563EB]">
+                           class="w-full px-3 py-1.5 text-xs rounded border border-slate-300 focus:outline-none focus:border-blue-600">
                 </div>
 
                 <div>
                     <label for="status" class="block text-[11px] font-semibold text-slate-600 mb-1">Status</label>
-                    <select name="status" id="status" class="w-full px-3 py-1.5 text-xs rounded border border-slate-300 focus:outline-none focus:border-[#2563EB] bg-white">
+                    <select name="status" id="status" class="w-full px-3 py-1.5 text-xs rounded border border-slate-300 focus:outline-none focus:border-blue-600 bg-white">
                         <option value="">All Statuses</option>
                         <option value="SUBMITTED" {{ request('status') === 'SUBMITTED' ? 'selected' : '' }}>Submitted</option>
                         <option value="ASSIGNED" {{ request('status') === 'ASSIGNED' ? 'selected' : '' }}>Assigned</option>
@@ -32,7 +32,7 @@
 
                 <div>
                     <label for="department_id" class="block text-[11px] font-semibold text-slate-600 mb-1">Department</label>
-                    <select name="department_id" id="department_id" class="w-full px-3 py-1.5 text-xs rounded border border-slate-300 focus:outline-none focus:border-[#2563EB] bg-white">
+                    <select name="department_id" id="department_id" class="w-full px-3 py-1.5 text-xs rounded border border-slate-300 focus:outline-none focus:border-blue-600 bg-white">
                         <option value="">All Departments</option>
                         @foreach($departments as $dept)
                             <option value="{{ $dept->id }}" {{ request('department_id') == $dept->id ? 'selected' : '' }}>{{ $dept->name }}</option>
@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="flex items-end gap-2">
-                    <button type="submit" class="px-4 py-1.5 rounded bg-[#172B4D] text-white text-xs font-semibold hover:bg-slate-900 transition">
+                    <button type="submit" class="px-4 py-1.5 rounded bg-slate-900 text-white text-xs font-semibold hover:bg-slate-900 transition">
                         Filter
                     </button>
                     @if(request()->hasAny(['search', 'status', 'department_id', 'priority', 'category_id']))
@@ -99,7 +99,7 @@
                                     {{ $c->created_at->format('d M Y') }}
                                 </td>
                                 <td class="px-6 py-3.5 text-right whitespace-nowrap">
-                                    <a href="{{ route('admin.complaints.show', $c->id) }}" class="text-[#2563EB] hover:underline font-semibold">
+                                    <a href="{{ route('admin.complaints.show', $c->id) }}" class="text-blue-600 hover:underline font-semibold">
                                         Manage &rarr;
                                     </a>
                                 </td>

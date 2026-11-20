@@ -1,7 +1,7 @@
 <x-layouts.app :title="'Verification Queue'">
     <div class="space-y-6">
         <div>
-            <h1 class="text-xl font-bold tracking-tight text-[#172B4D]">Resolution Verification Queue</h1>
+            <h1 class="text-xl font-bold tracking-tight text-slate-900">Resolution Verification Queue</h1>
             <p class="text-xs text-slate-500">Supervise, inspect and approve or reject investigation resolutions submitted by Management</p>
         </div>
 
@@ -41,7 +41,7 @@
                                     {{ $c->resolution_submitted_at ? $c->resolution_submitted_at->format('d M Y, H:i') : 'N/A' }}
                                 </td>
                                 <td class="px-6 py-3.5 text-right whitespace-nowrap">
-                                    <a href="{{ route('admin.complaints.show', $c->id) }}" class="px-3 py-1 rounded bg-[#2563EB] text-white text-xs font-semibold hover:bg-blue-700 transition">
+                                    <a href="{{ route('admin.complaints.show', $c->id) }}" class="px-3 py-1 rounded bg-blue-600 text-white text-xs font-semibold hover:bg-blue-700 transition">
                                         Review Resolution &rarr;
                                     </a>
                                 </td>

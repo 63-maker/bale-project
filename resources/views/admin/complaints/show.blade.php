@@ -7,7 +7,7 @@
                     &larr; Back to Complaints Registry
                 </a>
                 <div class="flex items-center gap-3">
-                    <h1 class="text-xl font-bold tracking-tight text-[#172B4D]">{{ $complaint->complaint_number }}</h1>
+                    <h1 class="text-xl font-bold tracking-tight text-slate-900">{{ $complaint->complaint_number }}</h1>
                     <x-status-badge :status="$complaint->status" />
                     <x-priority-badge :priority="$complaint->priority" />
                 </div>
@@ -16,7 +16,7 @@
             <!-- Administrative Action Buttons -->
             <div class="flex flex-wrap items-center gap-2">
                 @if(! in_array($complaint->status, [\App\Models\Complaint::STATUS_CLOSED, \App\Models\Complaint::STATUS_REJECTED]))
-                    <button type="button" @click="assignModal = true" class="px-3.5 py-2 rounded bg-[#172B4D] text-white text-xs font-semibold hover:bg-slate-900 transition flex items-center gap-1.5">
+                    <button type="button" @click="assignModal = true" class="px-3.5 py-2 rounded bg-slate-900 text-white text-xs font-semibold hover:bg-slate-900 transition flex items-center gap-1.5">
                         <i data-lucide="user-plus" class="w-4 h-4"></i>
                         <span>Assign / Reassign</span>
                     </button>
@@ -100,7 +100,7 @@
             <div class="lg:col-span-2 space-y-6">
                 <!-- Grievance Core Info -->
                 <div class="bg-white border border-slate-200 rounded p-6">
-                    <h2 class="text-base font-bold text-[#172B4D] mb-3">{{ $complaint->subject }}</h2>
+                    <h2 class="text-base font-bold text-slate-900 mb-3">{{ $complaint->subject }}</h2>
                     <div class="text-xs text-slate-700 leading-relaxed whitespace-pre-line bg-slate-50 p-4 rounded border border-slate-200 mb-5">
                         {{ $complaint->description }}
                     </div>
@@ -132,7 +132,7 @@
                 @if($complaint->resolution_description)
                     <div class="bg-white border border-slate-200 rounded p-6">
                         <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-sm font-bold text-[#172B4D]">Investigation Resolution</h3>
+                            <h3 class="text-sm font-bold text-slate-900">Investigation Resolution</h3>
                             @if($complaint->verified_at)
                                 <span class="text-[11px] text-emerald-700 font-semibold flex items-center gap-1">
                                     <i data-lucide="check" class="w-3.5 h-3.5"></i> Verified by Admin
@@ -148,7 +148,7 @@
                 <!-- Discussion & Audit Conversation Thread -->
                 <div class="bg-white border border-slate-200 rounded p-6" x-data="{ visibility: 'internal' }">
                     <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-200">
-                        <h3 class="text-sm font-bold text-[#172B4D]">Case Discussion & Internal Notes</h3>
+                        <h3 class="text-sm font-bold text-slate-900">Case Discussion & Internal Notes</h3>
                     </div>
 
                     <!-- Messages -->
@@ -194,7 +194,7 @@
                         <div class="flex items-center gap-4 text-xs">
                             <span class="font-semibold text-slate-700">Admin Message Visibility:</span>
                             <label class="inline-flex items-center gap-1.5 cursor-pointer">
-                                <input type="radio" name="visibility" value="public" x-model="visibility" class="text-[#2563EB] focus:ring-0">
+                                <input type="radio" name="visibility" value="public" x-model="visibility" class="text-blue-600 focus:ring-0">
                                 <span class="text-slate-700">Public (Visible to Student & Management)</span>
                             </label>
                             <label class="inline-flex items-center gap-1.5 cursor-pointer">
@@ -204,10 +204,10 @@
                         </div>
                         <div>
                             <textarea name="message" rows="3" required placeholder="Type official administrative remark or instruction..."
-                                      class="w-full px-3 py-2 text-xs rounded border border-slate-300 focus:outline-none focus:border-[#2563EB]"></textarea>
+                                      class="w-full px-3 py-2 text-xs rounded border border-slate-300 focus:outline-none focus:border-blue-600"></textarea>
                         </div>
                         <div class="text-right">
-                            <button type="submit" class="px-4 py-2 rounded bg-[#172B4D] text-white text-xs font-semibold hover:bg-slate-900 transition">
+                            <button type="submit" class="px-4 py-2 rounded bg-slate-900 text-white text-xs font-semibold hover:bg-slate-900 transition">
                                 Post Directive
                             </button>
                         </div>
@@ -271,7 +271,7 @@
                         </dl>
                     @else
                         <div class="text-xs text-slate-400 italic mb-3">No active Management officer currently assigned.</div>
-                        <button type="button" @click="assignModal = true" class="w-full py-1.5 rounded bg-[#172B4D] text-white text-xs font-semibold hover:bg-slate-900">
+                        <button type="button" @click="assignModal = true" class="w-full py-1.5 rounded bg-slate-900 text-white text-xs font-semibold hover:bg-slate-900">
                             Assign Now
                         </button>
                     @endif
@@ -283,7 +283,7 @@
                     <div class="relative pl-6 space-y-4 border-l border-slate-200 text-xs">
                         @foreach($complaint->statusHistory as $history)
                             <div class="relative">
-                                <div class="absolute -left-[31px] top-0.5 w-2.5 h-2.5 rounded-full bg-[#2563EB] border-2 border-white"></div>
+                                <div class="absolute -left-[31px] top-0.5 w-2.5 h-2.5 rounded-full bg-blue-600 border-2 border-white"></div>
                                 <div class="font-semibold text-slate-800">
                                     <x-status-badge :status="$history->new_status" />
                                 </div>
@@ -304,14 +304,14 @@
         <div x-show="assignModal" class="fixed inset-0 z-50 overflow-y-auto bg-slate-900/50 flex items-center justify-center p-4" style="display: none;">
             <div class="bg-white rounded border border-slate-200 max-w-md w-full p-6" @click.outside="assignModal = false">
                 <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-sm font-bold text-[#172B4D]">Assign / Reassign Complaint</h3>
+                    <h3 class="text-sm font-bold text-slate-900">Assign / Reassign Complaint</h3>
                     <button @click="assignModal = false" class="text-slate-400 hover:text-slate-600">&times;</button>
                 </div>
                 <form method="POST" action="{{ route('admin.complaints.assign', $complaint->id) }}" class="space-y-4">
                     @csrf
                     <div>
                         <label for="management_id" class="block text-xs font-semibold text-slate-700 mb-1">Select Management Member <span class="text-red-500">*</span></label>
-                        <select name="management_id" id="management_id" required class="w-full px-3 py-2 text-xs rounded border border-slate-300 focus:outline-none focus:border-[#2563EB] bg-white">
+                        <select name="management_id" id="management_id" required class="w-full px-3 py-2 text-xs rounded border border-slate-300 focus:outline-none focus:border-blue-600 bg-white">
                             <option value="">Choose Management Officer</option>
                             @foreach($managementMembers as $m)
                                 <option value="{{ $m->id }}" {{ $complaint->activeAssignment?->management_id === $m->id ? 'selected' : '' }}>
@@ -323,11 +323,11 @@
                     <div>
                         <label for="remarks" class="block text-xs font-semibold text-slate-700 mb-1">Administrative Remarks (Optional)</label>
                         <input type="text" name="remarks" id="remarks" placeholder="e.g. Assigned for immediate laboratory inspection"
-                               class="w-full px-3 py-2 text-xs rounded border border-slate-300 focus:outline-none focus:border-[#2563EB]">
+                               class="w-full px-3 py-2 text-xs rounded border border-slate-300 focus:outline-none focus:border-blue-600">
                     </div>
                     <div class="flex items-center justify-end gap-2 pt-2">
                         <button type="button" @click="assignModal = false" class="px-3 py-1.5 rounded border border-slate-300 text-xs text-slate-600 hover:bg-slate-50">Cancel</button>
-                        <button type="submit" class="px-4 py-1.5 rounded bg-[#172B4D] text-white text-xs font-semibold hover:bg-slate-900">Confirm Assignment</button>
+                        <button type="submit" class="px-4 py-1.5 rounded bg-slate-900 text-white text-xs font-semibold hover:bg-slate-900">Confirm Assignment</button>
                     </div>
                 </form>
             </div>

@@ -7,7 +7,7 @@
                     &larr; Back to My Complaints
                 </a>
                 <div class="flex items-center gap-3">
-                    <h1 class="text-xl font-bold tracking-tight text-[#172B4D]">{{ $complaint->complaint_number }}</h1>
+                    <h1 class="text-xl font-bold tracking-tight text-slate-900">{{ $complaint->complaint_number }}</h1>
                     <x-status-badge :status="$complaint->status" />
                     <x-priority-badge :priority="$complaint->priority" />
                 </div>
@@ -28,7 +28,7 @@
             <div class="lg:col-span-2 space-y-6">
                 <!-- Subject and Description Box -->
                 <div class="bg-white border border-slate-200 rounded p-6">
-                    <h2 class="text-base font-bold text-[#172B4D] mb-3">{{ $complaint->subject }}</h2>
+                    <h2 class="text-base font-bold text-slate-900 mb-3">{{ $complaint->subject }}</h2>
                     <div class="text-xs text-slate-700 leading-relaxed whitespace-pre-line bg-slate-50 p-4 rounded border border-slate-200 mb-4">
                         {{ $complaint->description }}
                     </div>
@@ -60,7 +60,7 @@
                 @if($complaint->resolution_description)
                     <div class="bg-white border border-slate-200 rounded p-6">
                         <div class="flex items-center justify-between mb-3">
-                            <h3 class="text-sm font-semibold text-[#172B4D] flex items-center gap-2">
+                            <h3 class="text-sm font-semibold text-slate-900 flex items-center gap-2">
                                 <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i>
                                 <span>Official Investigation Resolution</span>
                             </h3>
@@ -78,14 +78,14 @@
 
                 <!-- Discussion & Comments -->
                 <div class="bg-white border border-slate-200 rounded p-6">
-                    <h3 class="text-sm font-semibold text-[#172B4D] mb-4">Official Communication Thread</h3>
+                    <h3 class="text-sm font-semibold text-slate-900 mb-4">Official Communication Thread</h3>
 
                     <!-- Message History -->
                     <div class="space-y-3 mb-6">
                         @forelse($complaint->publicComments as $comment)
                             <div class="p-3.5 rounded text-xs {{ $comment->sender_id === auth()->id() ? 'bg-blue-50/60 border border-blue-200 ml-4' : 'bg-slate-50 border border-slate-200 mr-4' }}">
                                 <div class="flex items-center justify-between mb-1.5">
-                                    <span class="font-semibold {{ $comment->sender_id === auth()->id() ? 'text-[#2563EB]' : 'text-slate-800' }}">
+                                    <span class="font-semibold {{ $comment->sender_id === auth()->id() ? 'text-blue-600' : 'text-slate-800' }}">
                                         {{ $comment->sender?->full_name ?? 'User' }}
                                         <span class="text-[10px] font-normal text-slate-500 capitalize">
                                             ({{ $comment->sender?->role === 'management' ? 'Management' : ucfirst($comment->sender?->role ?? '') }})
@@ -115,10 +115,10 @@
                                     Send message or reply to Management
                                 </label>
                                 <textarea name="message" id="message" rows="3" required placeholder="Type your reply or question regarding this complaint..."
-                                          class="w-full px-3 py-2 text-xs rounded border border-slate-300 focus:outline-none focus:border-[#2563EB]"></textarea>
+                                          class="w-full px-3 py-2 text-xs rounded border border-slate-300 focus:outline-none focus:border-blue-600"></textarea>
                             </div>
                             <div class="text-right">
-                                <button type="submit" class="px-4 py-2 rounded bg-[#2563EB] text-white text-xs font-semibold hover:bg-blue-700 transition">
+                                <button type="submit" class="px-4 py-2 rounded bg-blue-600 text-white text-xs font-semibold hover:bg-blue-700 transition">
                                     Post Message
                                 </button>
                             </div>
@@ -178,7 +178,7 @@
                     <div class="relative pl-6 space-y-4 border-l border-slate-200 text-xs">
                         @foreach($complaint->statusHistory as $history)
                             <div class="relative">
-                                <div class="absolute -left-[31px] top-0.5 w-2.5 h-2.5 rounded-full bg-[#2563EB] border-2 border-white"></div>
+                                <div class="absolute -left-[31px] top-0.5 w-2.5 h-2.5 rounded-full bg-blue-600 border-2 border-white"></div>
                                 <div class="font-semibold text-slate-800">
                                     <x-status-badge :status="$history->new_status" />
                                 </div>
@@ -203,7 +203,7 @@
              style="display: none;">
             <div class="bg-white rounded border border-slate-200 max-w-md w-full p-6" @click.outside="open = false">
                 <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-sm font-bold text-[#172B4D]">Request Complaint Reopening</h3>
+                    <h3 class="text-sm font-bold text-slate-900">Request Complaint Reopening</h3>
                     <button @click="open = false" class="text-slate-400 hover:text-slate-600">&times;</button>
                 </div>
                 <p class="text-xs text-slate-600 mb-4 leading-relaxed">
@@ -216,7 +216,7 @@
                             Reason for Reopening <span class="text-red-500">*</span>
                         </label>
                         <textarea name="reason" id="reopen_reason" rows="4" required minlength="10" placeholder="Specify why the issue is still unresolved..."
-                                  class="w-full px-3 py-2 text-xs rounded border border-slate-300 focus:outline-none focus:border-[#2563EB]"></textarea>
+                                  class="w-full px-3 py-2 text-xs rounded border border-slate-300 focus:outline-none focus:border-blue-600"></textarea>
                     </div>
                     <div class="flex items-center justify-end gap-2">
                         <button type="button" @click="open = false" class="px-3 py-1.5 rounded border border-slate-300 text-xs font-medium text-slate-600 hover:bg-slate-50">

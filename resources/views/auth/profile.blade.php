@@ -1,12 +1,12 @@
 <x-layouts.app :title="'My Profile'">
     <div class="max-w-3xl mx-auto">
         <div class="mb-6">
-            <h1 class="text-xl font-bold tracking-tight text-[#172B4D]">My Profile</h1>
+            <h1 class="text-xl font-bold tracking-tight text-slate-900">My Profile</h1>
             <p class="text-xs text-slate-500">Manage your account information and institutional credentials</p>
         </div>
 
         <div class="bg-white border border-slate-200 rounded p-6 mb-6">
-            <h2 class="text-sm font-semibold text-[#172B4D] mb-4">Account Information</h2>
+            <h2 class="text-sm font-semibold text-slate-900 mb-4">Account Information</h2>
 
             <form method="POST" action="{{ route('profile.update') }}" class="space-y-4">
                 @csrf
@@ -15,7 +15,7 @@
                 <div>
                     <label for="full_name" class="block text-xs font-medium text-slate-700 mb-1">Full Name</label>
                     <input type="text" name="full_name" id="full_name" value="{{ old('full_name', $user->full_name) }}" required
-                           class="w-full px-3 py-2 text-xs rounded border border-slate-300 focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]">
+                           class="w-full px-3 py-2 text-xs rounded border border-slate-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600">
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -63,7 +63,7 @@
                 @endif
 
                 <div class="pt-2">
-                    <button type="submit" class="px-4 py-2 rounded bg-[#2563EB] text-white text-xs font-semibold hover:bg-blue-700 transition">
+                    <button type="submit" class="px-4 py-2 rounded bg-blue-600 text-white text-xs font-semibold hover:bg-blue-700 transition">
                         Update Profile
                     </button>
                 </div>
@@ -72,7 +72,7 @@
 
         <div class="bg-white border border-slate-200 rounded p-6 flex items-center justify-between">
             <div>
-                <h3 class="text-sm font-semibold text-[#172B4D]">Security & Password</h3>
+                <h3 class="text-sm font-semibold text-slate-900">Security & Password</h3>
                 <p class="text-xs text-slate-500 mt-0.5">Ensure your account uses a secure password</p>
             </div>
             <a href="{{ route('password.change') }}" class="px-3.5 py-2 rounded border border-slate-300 text-slate-700 text-xs font-semibold hover:bg-slate-50 transition">
