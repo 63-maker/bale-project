@@ -1,5 +1,6 @@
 *.log
 *.sqlite
+!database/template.sqlite
 *.sqlite-journal
 .DS_Store
 .env
@@ -16,7 +17,6 @@
 /.zed
 /auth.json
 /node_modules
-/public/build
 /public/fonts-manifest.dev.json
 /public/hot
 /public/storage

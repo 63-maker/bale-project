@@ -2,7 +2,6 @@
   "version": 2,
   "framework": null,
   "outputDirectory": "public",
-  "buildCommand": "npm run build",
   "functions": {
     "api/index.php": {
       "runtime": "vercel-php@0.7.4",
@@ -13,11 +12,11 @@
   "routes": [
     {
       "src": "/build/(.*)",
-      "dest": "/public/build/$1"
+      "dest": "/build/$1"
     },
     {
       "src": "/(favicon\\.ico|robots\\.txt)",
-      "dest": "/public/$1"
+      "dest": "/$1"
     },
     {
       "src": "/(.*)",
@@ -26,7 +25,8 @@
   ],
   "env": {
     "APP_ENV": "production",
-    "APP_DEBUG": "false",
+    "APP_DEBUG": "true",
+    "APP_KEY": "base64:dYvYWbuT65vrIMpzfUy1UCv4F6akVfvBX4dKVSrK0Eo=",
     "SESSION_DRIVER": "cookie",
     "CACHE_STORE": "array",
     "LOG_CHANNEL": "stderr"
