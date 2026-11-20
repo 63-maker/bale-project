@@ -35,6 +35,7 @@ class AdminDashboardController extends Controller
         $unreadNotifications = $this->notificationService->getUnreadCount($admin);
 
         return view('admin.dashboard', compact(
+            'admin',
             'analytics',
             'verificationQueue',
             'recentComplaints',

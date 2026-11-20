@@ -1,24 +1,216 @@
 <x-layouts.app :title="'Administrator Dashboard'">
     <div class="space-y-6">
-        <!-- Dashboard Top Banner -->
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-white border border-slate-200 rounded p-6">
-            <div>
-                <h1 class="text-xl font-bold tracking-tight text-[#172B4D]">Central Administrative Supervision</h1>
-                <p class="text-xs text-slate-500 mt-1">Real-time institutional oversight across all grievance categories and departments</p>
+        <!-- 1. DETAILS ACCORDING TO USER INPUT -->
+        <div class="bg-white border border-slate-200 rounded p-6 shadow-xs">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-4 mb-4 border-b border-slate-200">
+                <div>
+                    <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-[11px] font-semibold bg-amber-50 text-amber-900 border border-amber-200 mb-1">
+                        <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+                        <span>Authenticated System Administrator Profile</span>
+                    </div>
+                    <h1 class="text-xl font-bold tracking-tight text-[#172B4D]">
+                        {{ $admin->full_name }}
+                    </h1>
+                    <p class="text-xs text-slate-500">
+                        Details verified and loaded according to your sign-in input.
+                    </p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                        Admin Active
+                    </span>
+                    <a href="{{ route('admin.settings.index') }}" class="px-3 py-1.5 rounded border border-slate-300 bg-white text-slate-700 text-xs font-medium hover:bg-slate-50 transition flex items-center gap-1.5">
+                        <i data-lucide="settings" class="w-3.5 h-3.5"></i>
+                        <span>System Settings</span>
+                    </a>
+                </div>
             </div>
-            <div class="flex items-center gap-2">
-                <a href="{{ route('admin.verification-queue') }}" class="px-4 py-2 rounded bg-amber-600 text-white text-xs font-semibold hover:bg-amber-700 transition flex items-center gap-2 shadow-xs">
-                    <i data-lucide="check-circle" class="w-4 h-4"></i>
-                    <span>Verification Queue ({{ $verificationQueue->count() }})</span>
+
+            <!-- Profile Details Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                <div class="bg-slate-50 p-3 rounded border border-slate-200">
+                    <span class="block text-[10px] font-semibold text-slate-500 uppercase tracking-wider">Administrator ID</span>
+                    <span class="text-xs font-bold font-mono text-[#172B4D] mt-0.5 block truncate" title="{{ $admin->email }}">{{ $admin->email }}</span>
+                </div>
+
+                <div class="bg-slate-50 p-3 rounded border border-slate-200">
+                    <span class="block text-[10px] font-semibold text-slate-500 uppercase tracking-wider">Full Name</span>
+                    <span class="text-xs font-bold text-slate-800 mt-0.5 block truncate">{{ $admin->full_name }}</span>
+                </div>
+
+                <div class="bg-slate-50 p-3 rounded border border-slate-200">
+                    <span class="block text-[10px] font-semibold text-slate-500 uppercase tracking-wider">Operational Dept</span>
+                    <span class="text-xs font-bold text-slate-800 mt-0.5 block truncate">{{ $admin->department?->name ?? 'Central Administration' }}</span>
+                </div>
+
+                <div class="bg-slate-50 p-3 rounded border border-slate-200">
+                    <span class="block text-[10px] font-semibold text-slate-500 uppercase tracking-wider">Supervision Scope</span>
+                    <span class="text-xs font-bold text-[#2563EB] mt-0.5 block truncate">All College Departments</span>
+                </div>
+
+                <div class="bg-slate-50 p-3 rounded border border-slate-200">
+                    <span class="block text-[10px] font-semibold text-slate-500 uppercase tracking-wider">Security Clearance</span>
+                    <span class="text-xs font-bold text-emerald-700 mt-0.5 block truncate">Level 1 - Master Admin</span>
+                </div>
+
+                <div class="bg-slate-50 p-3 rounded border border-slate-200">
+                    <span class="block text-[10px] font-semibold text-slate-500 uppercase tracking-wider">Portal Role</span>
+                    <span class="text-xs font-bold text-[#172B4D] mt-0.5 block capitalize">{{ $admin->role }}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. AUTHORIZED ADMINISTRATIVE FUNCTIONS -->
+        <div class="bg-white border border-slate-200 rounded p-6 shadow-xs">
+            <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-200">
+                <div>
+                    <h2 class="text-sm font-bold text-[#172B4D] uppercase tracking-wider">Authorized Administrative Functions</h2>
+                    <p class="text-xs text-slate-500 mt-0.5">Central supervision, verification, assignment, configuration, and audit controls</p>
+                </div>
+                <span class="text-xs text-slate-400 font-medium">8 Functions Available</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Function 1: Verification Queue -->
+                <a href="{{ route('admin.verification-queue') }}" class="group p-4 rounded border {{ $verificationQueue->isNotEmpty() ? 'border-amber-300 bg-amber-50/50' : 'border-slate-200 bg-slate-50/50' }} hover:bg-white hover:border-amber-600 transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-8 h-8 rounded bg-amber-600 text-white flex items-center justify-center mb-3">
+                            <i data-lucide="shield-check" class="w-4 h-4"></i>
+                        </div>
+                        <h3 class="text-xs font-bold text-[#172B4D] group-hover:text-amber-700 transition">Verification Queue</h3>
+                        <p class="text-[11px] text-slate-600 mt-1 leading-relaxed">
+                            Review Management resolutions, approve verified closures, or reject with mandatory remarks.
+                        </p>
+                    </div>
+                    <div class="mt-3 pt-3 border-t border-slate-200 flex items-center text-xs font-semibold {{ $verificationQueue->isNotEmpty() ? 'text-amber-800' : 'text-slate-700' }}">
+                        <span>Queue ({{ $verificationQueue->count() }} pending)</span>
+                        <i data-lucide="arrow-right" class="w-3.5 h-3.5 ml-1 group-hover:translate-x-0.5 transition-transform"></i>
+                    </div>
                 </a>
-                <a href="{{ route('admin.reports.index') }}" class="px-4 py-2 rounded bg-[#172B4D] text-white text-xs font-semibold hover:bg-slate-900 transition flex items-center gap-2">
-                    <i data-lucide="bar-chart-2" class="w-4 h-4"></i>
-                    <span>Full Analytics</span>
+
+                <!-- Function 2: Complaint Assignment -->
+                <a href="{{ route('admin.complaints.index') }}" class="group p-4 rounded border border-blue-200 bg-blue-50/40 hover:bg-blue-50 hover:border-[#2563EB] transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-8 h-8 rounded bg-[#2563EB] text-white flex items-center justify-center mb-3">
+                            <i data-lucide="shuffle" class="w-4 h-4"></i>
+                        </div>
+                        <h3 class="text-xs font-bold text-[#172B4D] group-hover:text-[#2563EB] transition">Complaint Assignment</h3>
+                        <p class="text-[11px] text-slate-600 mt-1 leading-relaxed">
+                            Manually assign complaints to Management or trigger automated lowest-workload routing.
+                        </p>
+                    </div>
+                    <div class="mt-3 pt-3 border-t border-blue-100 flex items-center text-xs font-semibold text-[#2563EB]">
+                        <span>All Complaints ({{ $analytics['total'] }})</span>
+                        <i data-lucide="arrow-right" class="w-3.5 h-3.5 ml-1 group-hover:translate-x-0.5 transition-transform"></i>
+                    </div>
+                </a>
+
+                <!-- Function 3: Management Personnel -->
+                <a href="{{ route('admin.management.index') }}" class="group p-4 rounded border border-slate-200 bg-slate-50/50 hover:bg-white hover:border-[#172B4D] transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-8 h-8 rounded bg-[#172B4D] text-white flex items-center justify-center mb-3">
+                            <i data-lucide="users" class="w-4 h-4"></i>
+                        </div>
+                        <h3 class="text-xs font-bold text-[#172B4D] group-hover:text-[#2563EB] transition">Management Accounts</h3>
+                        <p class="text-[11px] text-slate-600 mt-1 leading-relaxed">
+                            Provision Management officer accounts, assign department roles, and toggle access statuses.
+                        </p>
+                    </div>
+                    <div class="mt-3 pt-3 border-t border-slate-200 flex items-center text-xs font-semibold text-slate-700 group-hover:text-[#2563EB]">
+                        <span>Manage Personnel</span>
+                        <i data-lucide="arrow-right" class="w-3.5 h-3.5 ml-1 group-hover:translate-x-0.5 transition-transform"></i>
+                    </div>
+                </a>
+
+                <!-- Function 4: Student Directory -->
+                <a href="{{ route('admin.students.index') }}" class="group p-4 rounded border border-slate-200 bg-slate-50/50 hover:bg-white hover:border-[#172B4D] transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-8 h-8 rounded bg-slate-700 text-white flex items-center justify-center mb-3">
+                            <i data-lucide="graduation-cap" class="w-4 h-4"></i>
+                        </div>
+                        <h3 class="text-xs font-bold text-[#172B4D] group-hover:text-[#2563EB] transition">Student Directory</h3>
+                        <p class="text-[11px] text-slate-600 mt-1 leading-relaxed">
+                            Inspect enrolled student accounts, verify register numbers, and manage account statuses.
+                        </p>
+                    </div>
+                    <div class="mt-3 pt-3 border-t border-slate-200 flex items-center text-xs font-semibold text-slate-700 group-hover:text-[#2563EB]">
+                        <span>Student Records</span>
+                        <i data-lucide="arrow-right" class="w-3.5 h-3.5 ml-1 group-hover:translate-x-0.5 transition-transform"></i>
+                    </div>
+                </a>
+
+                <!-- Function 5: Departments & Categories -->
+                <a href="{{ route('admin.departments.index') }}" class="group p-4 rounded border border-slate-200 bg-slate-50/50 hover:bg-white hover:border-[#172B4D] transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-8 h-8 rounded bg-indigo-600 text-white flex items-center justify-center mb-3">
+                            <i data-lucide="building-2" class="w-4 h-4"></i>
+                        </div>
+                        <h3 class="text-xs font-bold text-[#172B4D] group-hover:text-[#2563EB] transition">Departments & Categories</h3>
+                        <p class="text-[11px] text-slate-600 mt-1 leading-relaxed">
+                            Configure college departments, grievance categories, and standard SLA resolution targets.
+                        </p>
+                    </div>
+                    <div class="mt-3 pt-3 border-t border-slate-200 flex items-center text-xs font-semibold text-slate-700 group-hover:text-[#2563EB]">
+                        <span>Manage Config</span>
+                        <i data-lucide="arrow-right" class="w-3.5 h-3.5 ml-1 group-hover:translate-x-0.5 transition-transform"></i>
+                    </div>
+                </a>
+
+                <!-- Function 6: Institutional Analytics & Reports -->
+                <a href="{{ route('admin.reports.index') }}" class="group p-4 rounded border border-slate-200 bg-slate-50/50 hover:bg-white hover:border-[#172B4D] transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-8 h-8 rounded bg-teal-600 text-white flex items-center justify-center mb-3">
+                            <i data-lucide="file-text" class="w-4 h-4"></i>
+                        </div>
+                        <h3 class="text-xs font-bold text-[#172B4D] group-hover:text-[#2563EB] transition">Analytics & Reports</h3>
+                        <p class="text-[11px] text-slate-600 mt-1 leading-relaxed">
+                            Audit college-wide performance metrics and export formal reports in CSV and DomPDF formats.
+                        </p>
+                    </div>
+                    <div class="mt-3 pt-3 border-t border-slate-200 flex items-center text-xs font-semibold text-slate-700 group-hover:text-[#2563EB]">
+                        <span>Export CSV / PDF</span>
+                        <i data-lucide="arrow-right" class="w-3.5 h-3.5 ml-1 group-hover:translate-x-0.5 transition-transform"></i>
+                    </div>
+                </a>
+
+                <!-- Function 7: Security Audit Logs -->
+                <a href="{{ route('admin.audit-logs.index') }}" class="group p-4 rounded border border-slate-200 bg-slate-50/50 hover:bg-white hover:border-[#172B4D] transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-8 h-8 rounded bg-slate-800 text-white flex items-center justify-center mb-3">
+                            <i data-lucide="fingerprint" class="w-4 h-4"></i>
+                        </div>
+                        <h3 class="text-xs font-bold text-[#172B4D] group-hover:text-[#2563EB] transition">Security Audit Logs</h3>
+                        <p class="text-[11px] text-slate-600 mt-1 leading-relaxed">
+                            Review immutable chronological audit trail tracking user logins, status changes, and IP addresses.
+                        </p>
+                    </div>
+                    <div class="mt-3 pt-3 border-t border-slate-200 flex items-center text-xs font-semibold text-slate-700 group-hover:text-[#2563EB]">
+                        <span>View Audit Trail</span>
+                        <i data-lucide="arrow-right" class="w-3.5 h-3.5 ml-1 group-hover:translate-x-0.5 transition-transform"></i>
+                    </div>
+                </a>
+
+                <!-- Function 8: System Settings -->
+                <a href="{{ route('admin.settings.index') }}" class="group p-4 rounded border border-slate-200 bg-slate-50/50 hover:bg-white hover:border-[#172B4D] transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-8 h-8 rounded bg-slate-600 text-white flex items-center justify-center mb-3">
+                            <i data-lucide="sliders" class="w-4 h-4"></i>
+                        </div>
+                        <h3 class="text-xs font-bold text-[#172B4D] group-hover:text-[#2563EB] transition">Institutional Settings</h3>
+                        <p class="text-[11px] text-slate-600 mt-1 leading-relaxed">
+                            Configure college name, automated routing toggles, email alerts, and default SLA windows.
+                        </p>
+                    </div>
+                    <div class="mt-3 pt-3 border-t border-slate-200 flex items-center text-xs font-semibold text-slate-700 group-hover:text-[#2563EB]">
+                        <span>Configure System</span>
+                        <i data-lucide="arrow-right" class="w-3.5 h-3.5 ml-1 group-hover:translate-x-0.5 transition-transform"></i>
+                    </div>
                 </a>
             </div>
         </div>
 
-        <!-- 4 Key Enterprise Metric Cards (Real Computed Data - No Fake Numbers) -->
+        <!-- 3. 4 KEY ENTERPRISE METRIC CARDS -->
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
             <div class="bg-white border border-slate-200 rounded p-5">
                 <div class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Total Complaints</div>
@@ -45,7 +237,7 @@
             </div>
         </div>
 
-        <!-- Verification Queue Section -->
+        <!-- 4. VERIFICATION QUEUE SECTION (Awaiting Admin Action) -->
         @if($verificationQueue->isNotEmpty())
             <div class="bg-white border border-amber-300 rounded overflow-hidden">
                 <div class="px-6 py-4 bg-amber-50/70 border-b border-amber-200 flex items-center justify-between">
@@ -94,7 +286,7 @@
             </div>
         @endif
 
-        <!-- Chart Analytics Section -->
+        <!-- 5. CHART ANALYTICS SECTION -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <!-- Monthly Trend Chart -->
             <div class="bg-white border border-slate-200 rounded p-6">
@@ -119,7 +311,7 @@
             </div>
         </div>
 
-        <!-- Management Workload & Recent Complaints Grid -->
+        <!-- 6. MANAGEMENT WORKLOAD & RECENT COMPLAINTS GRID -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <!-- Management Workload -->
             <div class="bg-white border border-slate-200 rounded p-6">

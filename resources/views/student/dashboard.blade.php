@@ -1,24 +1,182 @@
 <x-layouts.app :title="'Student Dashboard'">
     <div class="space-y-6">
-        <!-- Top Header & Action -->
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-white border border-slate-200 rounded p-6">
-            <div>
-                <h1 class="text-xl font-bold tracking-tight text-[#172B4D]">Welcome, {{ $student->full_name }}</h1>
-                <p class="text-xs text-slate-500 mt-1">
-                    Register No: <span class="font-semibold text-slate-700">{{ $student->register_number }}</span> &bull; 
-                    Department: <span class="font-semibold text-slate-700">{{ $student->department?->name ?? 'N/A' }}</span> &bull;
-                    Year: <span class="font-semibold text-slate-700">{{ $student->study_year }} Year</span>
-                </p>
+        <!-- 1. DETAILS ACCORDING TO USER INPUT -->
+        <div class="bg-white border border-slate-200 rounded p-6 shadow-xs">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-4 mb-4 border-b border-slate-200">
+                <div>
+                    <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-[11px] font-semibold bg-blue-50 text-[#2563EB] border border-blue-200 mb-1">
+                        <i data-lucide="user-check" class="w-3.5 h-3.5"></i>
+                        <span>Authenticated Student Profile</span>
+                    </div>
+                    <h1 class="text-xl font-bold tracking-tight text-[#172B4D]">
+                        Welcome, {{ $student->full_name }}
+                    </h1>
+                    <p class="text-xs text-slate-500">
+                        Details verified and loaded according to your sign-in input.
+                    </p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                        Account Active
+                    </span>
+                    <a href="{{ route('profile') }}" class="px-3 py-1.5 rounded border border-slate-300 bg-white text-slate-700 text-xs font-medium hover:bg-slate-50 transition flex items-center gap-1.5">
+                        <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+                        <span>Edit Profile</span>
+                    </a>
+                </div>
             </div>
-            <div>
-                <a href="{{ route('student.complaints.create') }}" class="inline-flex items-center gap-2 px-4 py-2.5 rounded bg-[#2563EB] text-white text-xs font-semibold hover:bg-blue-700 transition shadow-xs">
-                    <i data-lucide="plus-circle" class="w-4 h-4"></i>
-                    <span>Submit New Complaint</span>
+
+            <!-- Profile Details Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                <div class="bg-slate-50 p-3 rounded border border-slate-200">
+                    <span class="block text-[10px] font-semibold text-slate-500 uppercase tracking-wider">Register Number</span>
+                    <span class="text-xs font-bold font-mono text-[#2563EB] mt-0.5 block truncate">{{ $student->register_number }}</span>
+                </div>
+
+                <div class="bg-slate-50 p-3 rounded border border-slate-200">
+                    <span class="block text-[10px] font-semibold text-slate-500 uppercase tracking-wider">Full Name</span>
+                    <span class="text-xs font-bold text-slate-800 mt-0.5 block truncate">{{ $student->full_name }}</span>
+                </div>
+
+                <div class="bg-slate-50 p-3 rounded border border-slate-200">
+                    <span class="block text-[10px] font-semibold text-slate-500 uppercase tracking-wider">College Email</span>
+                    <span class="text-xs font-medium text-slate-700 mt-0.5 block truncate" title="{{ $student->email }}">{{ $student->email }}</span>
+                </div>
+
+                <div class="bg-slate-50 p-3 rounded border border-slate-200">
+                    <span class="block text-[10px] font-semibold text-slate-500 uppercase tracking-wider">Department</span>
+                    <span class="text-xs font-bold text-slate-800 mt-0.5 block truncate">{{ $student->department?->code ?? 'N/A' }} - {{ $student->department?->name ?? 'General' }}</span>
+                </div>
+
+                <div class="bg-slate-50 p-3 rounded border border-slate-200">
+                    <span class="block text-[10px] font-semibold text-slate-500 uppercase tracking-wider">Year of Study</span>
+                    <span class="text-xs font-bold text-slate-800 mt-0.5 block truncate">{{ $student->study_year }} Year Undergraduate</span>
+                </div>
+
+                <div class="bg-slate-50 p-3 rounded border border-slate-200">
+                    <span class="block text-[10px] font-semibold text-slate-500 uppercase tracking-wider">Portal Role</span>
+                    <span class="text-xs font-bold text-[#172B4D] mt-0.5 block capitalize">{{ $student->role }}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. AUTHORIZED STUDENT FUNCTIONS -->
+        <div class="bg-white border border-slate-200 rounded p-6 shadow-xs">
+            <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-200">
+                <div>
+                    <h2 class="text-sm font-bold text-[#172B4D] uppercase tracking-wider">Authorized Student Functions</h2>
+                    <p class="text-xs text-slate-500 mt-0.5">Direct action modules available for your student account</p>
+                </div>
+                <span class="text-xs text-slate-400 font-medium">6 Functions Available</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Function 1: Submit New Complaint -->
+                <a href="{{ route('student.complaints.create') }}" class="group p-4 rounded border border-blue-200 bg-blue-50/40 hover:bg-blue-50 hover:border-[#2563EB] transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-8 h-8 rounded bg-[#2563EB] text-white flex items-center justify-center mb-3">
+                            <i data-lucide="plus-circle" class="w-4 h-4"></i>
+                        </div>
+                        <h3 class="text-xs font-bold text-[#172B4D] group-hover:text-[#2563EB] transition">Submit New Complaint</h3>
+                        <p class="text-[11px] text-slate-600 mt-1 leading-relaxed">
+                            File a new institutional grievance with category, description, and supporting evidence.
+                        </p>
+                    </div>
+                    <div class="mt-3 pt-3 border-t border-blue-100 flex items-center text-xs font-semibold text-[#2563EB]">
+                        <span>File Complaint</span>
+                        <i data-lucide="arrow-right" class="w-3.5 h-3.5 ml-1 group-hover:translate-x-0.5 transition-transform"></i>
+                    </div>
+                </a>
+
+                <!-- Function 2: Track Complaints -->
+                <a href="{{ route('student.complaints.index') }}" class="group p-4 rounded border border-slate-200 bg-slate-50/50 hover:bg-white hover:border-[#2563EB] transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-8 h-8 rounded bg-[#172B4D] text-white flex items-center justify-center mb-3">
+                            <i data-lucide="list-checks" class="w-4 h-4"></i>
+                        </div>
+                        <h3 class="text-xs font-bold text-[#172B4D] group-hover:text-[#2563EB] transition">My Complaints Queue</h3>
+                        <p class="text-[11px] text-slate-600 mt-1 leading-relaxed">
+                            Track the real-time status, department assignment, and investigation history of all your filings.
+                        </p>
+                    </div>
+                    <div class="mt-3 pt-3 border-t border-slate-200 flex items-center text-xs font-semibold text-slate-700 group-hover:text-[#2563EB]">
+                        <span>View All ({{ $totalComplaints }})</span>
+                        <i data-lucide="arrow-right" class="w-3.5 h-3.5 ml-1 group-hover:translate-x-0.5 transition-transform"></i>
+                    </div>
+                </a>
+
+                <!-- Function 3: Officer Communications -->
+                <a href="{{ route('student.complaints.index') }}" class="group p-4 rounded border border-slate-200 bg-slate-50/50 hover:bg-white hover:border-[#2563EB] transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-8 h-8 rounded bg-slate-700 text-white flex items-center justify-center mb-3">
+                            <i data-lucide="message-square" class="w-4 h-4"></i>
+                        </div>
+                        <h3 class="text-xs font-bold text-[#172B4D] group-hover:text-[#2563EB] transition">Officer Discussions</h3>
+                        <p class="text-[11px] text-slate-600 mt-1 leading-relaxed">
+                            Participate in case inquiry discussions and review responses from investigating Management officers.
+                        </p>
+                    </div>
+                    <div class="mt-3 pt-3 border-t border-slate-200 flex items-center text-xs font-semibold text-slate-700 group-hover:text-[#2563EB]">
+                        <span>Open Discussions</span>
+                        <i data-lucide="arrow-right" class="w-3.5 h-3.5 ml-1 group-hover:translate-x-0.5 transition-transform"></i>
+                    </div>
+                </a>
+
+                <!-- Function 4: Reopen Complaints -->
+                <a href="{{ route('student.complaints.index', ['status' => 'CLOSED']) }}" class="group p-4 rounded border border-slate-200 bg-slate-50/50 hover:bg-white hover:border-[#2563EB] transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-8 h-8 rounded bg-amber-600 text-white flex items-center justify-center mb-3">
+                            <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                        </div>
+                        <h3 class="text-xs font-bold text-[#172B4D] group-hover:text-[#2563EB] transition">Request Reopening</h3>
+                        <p class="text-[11px] text-slate-600 mt-1 leading-relaxed">
+                            Request reopened investigation if a grievance resolution was unsatisfactory.
+                        </p>
+                    </div>
+                    <div class="mt-3 pt-3 border-t border-slate-200 flex items-center text-xs font-semibold text-slate-700 group-hover:text-[#2563EB]">
+                        <span>Review Closed Cases</span>
+                        <i data-lucide="arrow-right" class="w-3.5 h-3.5 ml-1 group-hover:translate-x-0.5 transition-transform"></i>
+                    </div>
+                </a>
+
+                <!-- Function 5: Notifications & Updates -->
+                <a href="{{ route('student.notifications.index') }}" class="group p-4 rounded border border-slate-200 bg-slate-50/50 hover:bg-white hover:border-[#2563EB] transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-8 h-8 rounded bg-indigo-600 text-white flex items-center justify-center mb-3">
+                            <i data-lucide="bell" class="w-4 h-4"></i>
+                        </div>
+                        <h3 class="text-xs font-bold text-[#172B4D] group-hover:text-[#2563EB] transition">Notifications & Alerts</h3>
+                        <p class="text-[11px] text-slate-600 mt-1 leading-relaxed">
+                            Check real-time status updates, official resolution remarks, and institutional announcements.
+                        </p>
+                    </div>
+                    <div class="mt-3 pt-3 border-t border-slate-200 flex items-center text-xs font-semibold text-slate-700 group-hover:text-[#2563EB]">
+                        <span>Alerts ({{ $unreadNotifications }} unread)</span>
+                        <i data-lucide="arrow-right" class="w-3.5 h-3.5 ml-1 group-hover:translate-x-0.5 transition-transform"></i>
+                    </div>
+                </a>
+
+                <!-- Function 6: Profile & Password -->
+                <a href="{{ route('profile') }}" class="group p-4 rounded border border-slate-200 bg-slate-50/50 hover:bg-white hover:border-[#2563EB] transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-8 h-8 rounded bg-slate-600 text-white flex items-center justify-center mb-3">
+                            <i data-lucide="shield" class="w-4 h-4"></i>
+                        </div>
+                        <h3 class="text-xs font-bold text-[#172B4D] group-hover:text-[#2563EB] transition">Account & Security</h3>
+                        <p class="text-[11px] text-slate-600 mt-1 leading-relaxed">
+                            Manage permitted profile details, review session security, and update your account password.
+                        </p>
+                    </div>
+                    <div class="mt-3 pt-3 border-t border-slate-200 flex items-center text-xs font-semibold text-slate-700 group-hover:text-[#2563EB]">
+                        <span>Security Settings</span>
+                        <i data-lucide="arrow-right" class="w-3.5 h-3.5 ml-1 group-hover:translate-x-0.5 transition-transform"></i>
+                    </div>
                 </a>
             </div>
         </div>
 
-        <!-- 4 Stat Metric Cards -->
+        <!-- 3. LIVE CASE METRICS -->
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
             <div class="bg-white border border-slate-200 rounded p-5">
                 <div class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Total Complaints</div>
@@ -45,7 +203,7 @@
             </div>
         </div>
 
-        <!-- Recent Complaints Section -->
+        <!-- 4. RECENT COMPLAINTS TABLE -->
         <div class="bg-white border border-slate-200 rounded">
             <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between">
                 <div>
@@ -97,19 +255,14 @@
                                 </td>
                                 <td class="px-6 py-3.5 text-right whitespace-nowrap">
                                     <a href="{{ route('student.complaints.show', $c->id) }}" class="text-[#2563EB] hover:underline font-medium">
-                                        View Details
+                                        View Details &rarr;
                                     </a>
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="8" class="px-6 py-12 text-center text-slate-500">
-                                    <i data-lucide="inbox" class="w-8 h-8 text-slate-400 mx-auto mb-2"></i>
-                                    <p class="font-medium text-slate-700">No complaints submitted yet.</p>
-                                    <p class="text-[11px] text-slate-400 mt-1">If you have any campus grievance, submit a formal request.</p>
-                                    <a href="{{ route('student.complaints.create') }}" class="inline-block mt-3 px-3.5 py-1.5 rounded bg-[#2563EB] text-white text-xs font-semibold hover:bg-blue-700">
-                                        Submit Complaint
-                                    </a>
+                                <td colspan="8" class="px-6 py-8 text-center text-slate-400">
+                                    No complaints filed yet. Click "Submit New Complaint" above to register your first grievance.
                                 </td>
                             </tr>
                         @endforelse

@@ -199,7 +199,7 @@
                             </label>
                             <label class="inline-flex items-center gap-1.5 cursor-pointer">
                                 <input type="radio" name="visibility" value="internal" x-model="visibility" class="text-amber-600 focus:ring-0">
-                                <span class="text-amber-800 font-medium">Internal Note (Staff/Admin Only)</span>
+                                <span class="text-amber-800 font-medium">Internal Note (Management/Admin Only)</span>
                             </label>
                         </div>
                         <div>

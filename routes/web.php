@@ -24,10 +24,8 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-// Public Landing Page
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+// Direct Application Entry - Login UI appears first
+Route::get('/', [AuthController::class, 'showLogin'])->name('home');
 
 // Authentication Routes
 Route::middleware('guest')->group(function () {
