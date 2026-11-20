@@ -6,6 +6,7 @@ use App\Models\Complaint;
 use App\Models\ComplaintAssignment;
 use App\Models\ComplaintCategory;
 use App\Models\ComplaintComment;
+use App\Models\ComplaintCounter;
 use App\Models\Department;
 use App\Models\Profile;
 use Illuminate\Database\Seeder;
@@ -123,6 +124,11 @@ class DatabaseSeeder extends Seeder
                 'assigned_at' => now(),
                 'is_active' => true,
             ]);
+
+            ComplaintCounter::updateOrCreate(
+                ['year' => 2026],
+                ['last_number' => 2]
+            );
         }
     }
 }
